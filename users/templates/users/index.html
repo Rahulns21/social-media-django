@@ -1,0 +1,13 @@
+{% extends "users/base.html" %}
+{% block title %}Feed{% endblock title %}
+
+{% block body %}
+<body>
+    {% for post in posts %}
+        <img src="{{post.image.url}}" alt="" width="450px" height="350px">
+        <h4>{{post.caption | title}}</h4>
+        <p>{{post.description | title}}</p>
+        <p>Post by: {{post.user}}</p>
+    {% endfor %}
+</body>
+{% endblock body %}
