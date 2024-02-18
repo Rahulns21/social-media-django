@@ -46,7 +46,8 @@ def user_register(request):
 def index(request):
     current_user = request.user
     posts = Post.objects.filter(user=current_user)
-    context = {'posts': posts}
+    profile = Profile.objects.filter(user=current_user).first()
+    context = {'posts': posts, 'profile': profile}
     return render(request, 'users/index.html', context=context)
 
 @login_required

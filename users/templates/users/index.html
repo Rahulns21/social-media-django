@@ -1,13 +1,45 @@
-{% extends "users/base.html" %}
-{% block title %}Feed{% endblock title %}
-
+{% extends "users/base.html" %} {% block title %}Feed{% endblock %} 
 {% block body %}
 <body>
+  <div class="flex mt-5 p-10 justify-center">
+    <h2 class="text-3xl font-normal mb-2 text-gray-500">My Posts</h2>
+  </div>
+  <div class="grid mx-60 grid-cols-1" style="justify-items: center">
     {% for post in posts %}
-        <img src="{{post.image.url}}" alt="" width="450px" height="350px">
-        <h4>{{post.caption | title}}</h4>
-        <p>{{post.description | title}}</p>
-        <p>Post by: {{post.user}}</p>
+    <!--Card starts here-->
+    <div class="m-5" style="width: 500px">
+      <a href="#" class="block">
+        <div
+          class="user-container p-10 h-full border rounded-lg bg-white shadow-lg"
+        >
+          <div class="flex items-center mb-4">
+            <img
+              src="{{ post.user.profile.photo.url }}"
+              class="h-10 w-10 rounded-full mr-2"
+              alt=""
+            />
+            <div class="font-bold text-indigo-500">
+              {{ post.user.username }}
+            </div>
+          </div>
+          <div class="overflow-hidden">
+            <img class="w-full" src="{{ post.image.url }}" alt="" />
+          </div>
+
+          <!--Other content starts here-->
+          
+          <!--Other content ends here-->
+
+        </div>
+      </a>
+    </div>
+    <!--Card ends here-->
     {% endfor %}
+  </div>
 </body>
-{% endblock body %}
+{% endblock %}
+
+<img src="{{post.image.url}}" alt="" width="450px" height="350px" />
+<h4>{{post.caption | title}}</h4>
+<p>{{post.description | title}}</p>
+<p>Post by: {{post.user}}</p>

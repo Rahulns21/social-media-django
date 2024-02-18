@@ -1,11 +1,60 @@
-{% extends "users/base.html" %}
+{% extends "users/base.html" %} 
 
-{% block title %}User Registration{% endblock title %}
+{% block title %}User Registration {% endblock title %} 
 
 {% block body %}
-<form action="" method="POST">
+<h1 class="text-2xl ml-10 m-5 mb-0">New here? Register now</h1>
+
+<div class="container py-1">
+  <form
+    class="bg-white border shadow-md m-10 w-1/4 h-3/5 rounded p-10"
+    method="POST"
+  >
     {% csrf_token %}
-    {{user_form.as_p}}
-    <button type="submit">Register</button>
-</form>
+    <div class="mb-2">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for=""
+        >Username:</label
+      >
+      <div
+        class="shadow text-gray-700 appearance-none border rounded p-1 mr-10"
+      >
+        {{user_form.username}}
+      </div>
+      <div class="mb-2 mt-3">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for=""
+          >Email:</label
+        >
+        <div
+          class="shadow text-gray-700 appearance-none border rounded p-1 mr-10"
+        >
+          {{user_form.email}}
+        </div>
+      </div>
+
+      <label class="block text-gray-700 text-sm font-bold mb-2" for=""
+        >Password:</label
+      >
+      <div
+        class="shadow text-gray-700 appearance-none border rounded p-1 mr-10"
+      >
+        {{user_form.password}}
+      </div>
+    </div>
+
+    <label class="block text-gray-700 text-sm font-bold mb-2" for=""
+      >Confirm Password:</label
+    >
+    <div class="shadow text-gray-700 appearance-none border rounded p-1 mr-10">
+      {{user_form.password2}}
+    </div>
+
+    <button
+      type="submit"
+      class="text-white bg-green-500 px-5 py-1 rounded mt-8"
+    >
+      Register
+    </button>
+  </form>
+</div>
+
 {% endblock body %}
