@@ -1,0 +1,15 @@
+input:focus {
+  outline: none;
+}
+
+input {
+  width: 100%;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea {
+    width: 50%
+}

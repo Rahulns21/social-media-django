@@ -1,5 +1,5 @@
-{% extends "users/base.html" %} {% block title %}Feed{% endblock %} 
-{% block body %}
+{% extends "users/base.html" %} {% load static %} 
+{% block title %} Feed {% endblock title %} {% block body %}
 <body>
   <div class="flex mt-5 p-10 justify-center">
     <h2 class="text-3xl font-normal mb-2 text-gray-500">My Posts</h2>
@@ -26,10 +26,22 @@
             <img class="w-full" src="{{ post.image.url }}" alt="" />
           </div>
 
-          <!--Other content starts here-->
-          
-          <!--Other content ends here-->
+          <!--like comment share starts here-->
+          <div class="px-6 mt-5">
+            <div class="icon-container flex gap-5">
+              <img class="w-10 h-10 " src="{% static "users/images/like.png" %}"alt="like"> 
+              <img class="w-7 h-7 mt-2" src="{% static "users/images/comment.png" %}" alt="comment"> 
+              <img class="w-7 h-7 mt-2 " src="{% static "users/images/share.png" %}" alt="share">
+            </div>
+          </div>
+          <!--like comment share ends here-->
 
+          <!--post caption and description starts-->
+          <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{ post.caption }}</div>
+            <p class="text-gray-700 text-base">{{ post.description }}</p>
+          </div>
+          <!--post caption and description ends-->
         </div>
       </a>
     </div>
@@ -37,9 +49,9 @@
     {% endfor %}
   </div>
 </body>
-{% endblock %}
+{% endblock body %}
 
 <img src="{{post.image.url}}" alt="" width="450px" height="350px" />
 <h4>{{post.caption | title}}</h4>
 <p>{{post.description | title}}</p>
-<p>Post by: {{post.user}}</p>
+<p>Post by: {{ post.user }}</p>

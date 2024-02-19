@@ -4,13 +4,44 @@
 
 {% block body %}
 
-<h2>Edit Profile</h2>
+<h2 class="text-3xl text-gray-700 font-bold my-5 px-10 mx-2 mt-10" >Edit User Profile</h2>
 
-<form action="" method="POST" enctype="multipart/form-data">
+<div class="container px-10 mt-7">
+
+<form action="" method="POST"  enctype="multipart/form-data">
     {% csrf_token %}
-    {{user_form.as_p}}
-    {{profile_form.as_p}}
-    <input type="submit">
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold ml-2 mb-2" for="">First Name:</label>
+        <div class="shawdow appearance-none border rounded py-2 px-3 mr-10 ml-2 text-gray-700">
+            {{ user_form.first_name }}
+        </div>
+    </div>
+
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold ml-2 mb-2" for="">Last Name:</label>
+        <div class="shawdow appearance-none border rounded py-2 px-3 mr-10 ml-2 text-gray-700">
+            {{ user_form.last_name }}
+        </div>
+    </div>
+
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold ml-2 mb-2" for="">Email:</label>
+        <div class="shawdow appearance-none border rounded py-2 px-3 mr-10 ml-2 text-gray-700">
+            {{ user_form.email }}
+        </div>
+    </div>
+
+    <div class="mb-2">
+        <label class="block text-gray-700 text-sm font-bold ml-2 mb-2" for="">Profile Image:</label>
+        <div class="shawdow appearance-none border rounded py-2 px-3 mr-10 ml-2 text-gray-700">
+            {{ profile_form.photo }}
+        </div>
+    </div>
+
+    <button type="submit" class="bg-green-500 rounded text-white my-5 px-5 py-2 mx-2">Save</button>
+    
 </form>
+
+</div>
 
 {% endblock body %}
