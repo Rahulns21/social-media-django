@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from .models import *
 from .forms import *
 
 @login_required
@@ -15,3 +16,8 @@ def create_post(request):
         form = PostCreateForm(data=request.GET)
     context = {'form': form}
     return render(request, 'posts/create.html', context=context)
+
+def feed(request):
+    posts = Post.objects.all()
+    context = {'posts': posts}
+    return render(request, 'posts/feed.html', context=context)
