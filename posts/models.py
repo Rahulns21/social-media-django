@@ -17,6 +17,7 @@ class Post(models.Model):
     description = models.TextField(blank=True)
     slug = models.SlugField(max_length=200, blank=True, editable=True)
     created = models.DateField(auto_now_add=True)
+    liked_by = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='posts_liked', blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug or self.caption != self._old_caption:
