@@ -19,9 +19,19 @@ def create_post(request):
     return render(request, 'posts/create.html', context=context)
 
 def feed(request):
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        new_comment = comment_form.save(commit=False)
+        post_id = request.POST.get('post_id')
+        post = get_object_or_404(Post, id=post_id)
+        new_comment.post = post
+        new_comment.save()
+    else:
+        comment_form = CommentForm()
+
     posts = Post.objects.all()
     logged_user = request.user
-    context = {'posts': posts, 'logged_user': logged_user}
+    context = {'posts': posts, 'logged_user': logged_user, 'comment_form': comment_form}
     return render(request, 'posts/feed.html', context=context)
 
 def like_post(request):
