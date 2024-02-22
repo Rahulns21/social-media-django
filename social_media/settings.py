@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
 EXTERNAL_APPS = [
     'posts.apps.PostsConfig',
+    'mathfilters',
 ]
 
 INSTALLED_APPS += EXTERNAL_APPS

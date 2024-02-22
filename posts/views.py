@@ -20,7 +20,8 @@ def create_post(request):
 
 def feed(request):
     posts = Post.objects.all()
-    context = {'posts': posts}
+    logged_user = request.user
+    context = {'posts': posts, 'logged_user': logged_user}
     return render(request, 'posts/feed.html', context=context)
 
 def like_post(request):

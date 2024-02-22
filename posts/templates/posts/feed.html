@@ -1,4 +1,6 @@
-{% extends "users/base.html" %} {% load static %} 
+{% extends "users/base.html" %} 
+{% load mathfilters %}
+{% load static %} 
 {% block title %} Feed {% endblock title %} {% block body %}
 
   <div class="flex mt-5 p-10 justify-center">
@@ -29,15 +31,30 @@
           <!--like comment share starts here-->
           <div class="px-6 mt-5">
             <div class="icon-container flex gap-5">
-              <a id="{{post.id}}" class="btn-like"><img class="w-10 h-10 " src="{% static "users/images/like.png" %}"alt="like"></a>
+              <a id="{{post.id}}" class="btn-like">
+                {% if logged_user in post.liked_by.all %}
+                <img class="w-10 h-10 " src="{% static "users/images/heart.png" %}"alt="like">
+                {% else %}
+                <img class="w-10 h-10 " src="{% static "users/images/like.png" %}"alt="like">
+                {% endif %}
+              </a>
               <img class="w-7 h-7 mt-2" src="{% static "users/images/comment.png" %}" alt="comment"> 
               <img class="w-7 h-7 mt-2 " src="{% static "users/images/share.png" %}" alt="share">
             </div>
           </div>
           <!--like comment share ends here-->
 
+          <div class="px-6 mt-3">
+            {% if post.liked_by.count < 1 %}
+            {% elif post.liked_by.count == 1%}
+            Liked by {{post.liked_by.first}}
+            {% elif post.liked_by.count > 1 %}
+            Liked by {{post.liked_by.first}} and {{post.liked_by.count|sub:1}} others
+            {% endif %}
+          </div>
+
           <!--post caption and description starts-->
-          <div class="px-6 py-4">
+          <div class="px-6 py-2">
             <div class="font-bold text-xl mb-2">{{ post.caption }}</div>
             <p class="text-gray-700 text-base">{{ post.description }}</p>
           </div>
@@ -58,6 +75,7 @@
         url:'/posts/like',
         data:{post_id:post_id, csrfmiddlewaretoken:window.CSRF_TOKEN}
       })
+      window.location.href="http://127.0.0.1:8000/posts/feed"
     })
   </script>
 
